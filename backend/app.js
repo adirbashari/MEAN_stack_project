@@ -2,9 +2,9 @@ const express = require("express");
 const Post = require('./models/post');
 const app = express();
 const mongoose = require("mongoose")
-const sourceFile  = require("./secret-MongoDB-connection-string");
+const mogoDB  = require("./secret-MongoDB-connection-string");
 
-mongoose.connect(sourceFile.connectionString)
+mongoose.connect(mogoDB.connectionString)
 .then(() => {
   console.log("Connected to database!");
 })
