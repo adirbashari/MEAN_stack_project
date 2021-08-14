@@ -2,13 +2,14 @@ const express = require("express");
 const Post = require('./models/post');
 const app = express();
 const mongoose = require("mongoose")
+const sourceFile  = require("./secret-MongoDB-connection-string");
 
-
-mongoose.connect("mongodb+srv://adir:adirbashari@cluster0.pad74.mongodb.net/mean-stack?retryWrites=true&w=majority")
+mongoose.connect(sourceFile.connectionString)
 .then(() => {
   console.log("Connected to database!");
 })
 .catch(() => {
+  console.log(connectionString)
   console.log("Connection failed!");
 });
 
