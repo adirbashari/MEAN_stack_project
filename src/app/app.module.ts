@@ -13,6 +13,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
