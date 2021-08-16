@@ -21,7 +21,6 @@ constructor(private postsServices: PostsService,private route: ActivatedRoute){}
 
 ngOnInit(){
   this.route.paramMap.subscribe((paramMap:ParamMap)=>{
-  console.log("ngOnInit-route")
   if(paramMap.has('postId')){
   this.mode='edit';
   this.postId=paramMap.get('postId');
