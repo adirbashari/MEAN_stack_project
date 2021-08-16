@@ -10,38 +10,24 @@ import { Post } from './../post.model';
   styleUrls:['post-create.component.css']
 })
 export class PostCreateComponent implements OnInit{
-enteredTitle='';
-enteredContent='';
 private mode='create';
 private postId:string;
 post: Post;
 isLoading=false;
-constructor(public postsServices: PostsService,public route: ActivatedRoute){}
+//public postsServices;
+//public route
+constructor(private postsServices: PostsService,private route: ActivatedRoute){}
 
-
-onSavePost(form:NgForm){
-  if( form.invalid){
-    return;
-  }
-  this.isLoading=true;
-  if(this.mode==='create'){
-    this.postsServices.addPost(form.value.title,form.value.content);
-  }
-  else{
-    this.postsServices.updatePost(this.postId,form.value.title,form.value.content);
-  }
-form.resetForm();
-
-}
 
 ngOnInit(){
-this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+  this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+  console.log("ngOnInit-route")
   if(paramMap.has('postId')){
   this.mode='edit';
   this.postId=paramMap.get('postId');
   this.isLoading=true;
   this.postsServices.getPost(this.postId).subscribe(postData=>{
-  this.isLoading=false;
+    this.isLoading=false;
     this.post={
       id:postData._id,
       title:postData.title,
@@ -56,5 +42,18 @@ this.route.paramMap.subscribe((paramMap:ParamMap)=>{
 });
 }
 
+onSavePost(form:NgForm){
+  if(form.invalid){
+    return;
+  }
+  this.isLoading=true;
+  if(this.mode==='create'){
+    this.postsServices.addPost(form.value.title,form.value.content);
+  }
+  else{
+    this.postsServices.updatePost(this.postId,form.value.title,form.value.content);
+  }
+  form.resetForm();
+}
 
 }

@@ -51,7 +51,6 @@ export class PostsService {
       .subscribe(responseData => {
         const id= responseData.postId;
         post.id=id;
-        console.log(post);
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
         this.router.navigate(["/"]);
@@ -77,9 +76,7 @@ deletePost(postId:string){
   this.http.delete("http://localhost:3000/api/posts/"+postId)
   .subscribe(()=>{
     const updatedPosts=this.posts.filter(post=>post.id !== postId);
-    console.log([...this.posts]);
     this.posts=updatedPosts;
-    console.log([...this.posts]);
     this.postsUpdated.next([...this.posts]);
   });
 }
