@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose")
 const MongoDBConnectionString  = require("./secret-MongoDB-connection-string");
 const postsRoutes= require("./routes/posts");
-
+const path  =require("path");
 
 mongoose.connect(MongoDBConnectionString)
 .then(() => {
@@ -16,7 +16,7 @@ mongoose.connect(MongoDBConnectionString)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use("/images",express.static(path.join("backend/images")))
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
